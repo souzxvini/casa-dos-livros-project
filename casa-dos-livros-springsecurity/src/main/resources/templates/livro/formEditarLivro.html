@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8" />
+
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous">
+	
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="/css/home.css" >
+		<script src="https://kit.fontawesome.com/55cdf805a8.js" crossorigin="anonymous"></script>
+		
+		<title>Livraria</title>
+	</head>
+		
+	<body>
+		
+		<div th:replace="~{base :: sidebar}"></div>
+
+	<div class="main">
+		
+		<div th:replace="~{base :: topbar}"></div>
+		
+		<div th:replace="~{base :: titulo('editar livro')}"></div>
+		
+		<div class="container"> 
+			<div class="card shadow p-3 mb-5 bg-body rounded" style="width:60%; margin:auto;">
+				<form th:object="${livro}" class="card-body text-uppercase" th:action="@{/livro/atualizar}" method="post">
+				
+				<!-- SEMPRE ADICIONAR ID HIDDEN NO FORMULARIO DE EDIÇÃO -->
+				<div class="form-group">
+					<label for="id">Id:</label>
+					<input th:field="*{id}" th:errorclass="is-invalid" class="form-control mb-2 " readonly="readonly"/>
+					<div class="invalid-feedback" th:errors="*{id}"></div>
+				</div>
+							
+				<div class="form-group">
+					<label class="form-label" for="nome">Nome do Livro:</label>
+					<input th:field="*{nome}" th:errorclass="is-invalid" class="form-control mb-2" placeholder="Digite o nome do livro" required/>
+					<div class="invalid-feedback" th:errors="*{nome}">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="form-label" for="autor">Autor: </label>
+					<input th:field="*{autor}" class=" form-control mb-2" placeholder="Digite o nome do autor"  autocomplete="off" required/>
+					<div class="invalid-feedback" th:errors="*{autor}">
+				</div>
+				
+				<div class="form-group">
+					<label class="form-label" for="descricao">Sinopse:</label>
+					<input th:field="*{sinopse}"  class="form-control mb-2" placeholder="Digite a sinopse do livro"  autocomplete="off" required/>
+					<div class="invalid-feedback" th:errors="*{sinopse}">
+				</div>
+				
+				<div class="form-group">
+					<label class="form-label" for="urlImagem">url da imagem:</label>
+					<input th:field="*{urlImagem}"  class="form-control mb-2" placeholder="Digite a sinopse do livro"  autocomplete="off" required/>
+					<div class="invalid-feedback" th:errors="*{urlImagem}">
+				</div>
+				
+				<div class="form-group row">
+					<div class="col-6 ">
+						<label class="form-label" for="genero">Gênero</label>
+							<select name="genero" class="form-select text-uppercase" required autocomplete="off">
+								<option value="" disabled selected>Selecione...</option>
+								<option th:each="genero : ${generos}" th:value="${genero.id}" th:text="${genero.nome}" ></option>
+							</select>
+						
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					
+				</div>
+					<div class="row mt-2">
+							
+								
+							<div class="col-6 d-grid mx-auto">
+								<a class="btn btn-dark text-uppercase" th:href="@{/home}" >VOLTAR</a>
+							</div>
+							
+							<div class="col-6 d-grid  mx-auto ">
+								<input class=" btn btn-success text-uppercase" type="submit"/>
+							</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

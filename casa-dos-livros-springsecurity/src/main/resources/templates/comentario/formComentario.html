@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8" />
+
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous">
+	
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+		
+		<link rel="stylesheet" href="/css/home.css" >
+		<script src="https://kit.fontawesome.com/55cdf805a8.js" crossorigin="anonymous"></script>
+		
+		<title>Livraria</title>
+	</head>
+		
+	<body>
+		
+		<div th:replace="~{base :: sidebar}"></div>
+
+	<div class="main">
+		
+		<div th:replace="~{base :: topbar}"></div>
+		
+		<div th:replace="~{base :: titulo('Faça seu comentário')}"></div>
+		
+		<div class="container"> 
+			<div class="card shadow p-3 mb-5 bg-body rounded" style="width:60%; margin:auto;">
+				<form th:object="${requisicaoNovoComentario}" class="card-body text-uppercase" th:action="@{/comentario/novo}" method="post">
+				
+				<div class="form-group">
+					<label class="form-label" for="pergunta">Comentário:</label>
+					<textarea th:field="*{pergunta}" th:errorclass="is-invalid" class="form-control mb-2" rows="3"placeholder="Digite o seu comentário" ></textarea>
+					<div class="invalid-feedback" th:errors="*{pergunta}">
+					</div>
+				</div>
+					<div class="row mt-2">
+						
+					
+						<div class="col-6 d-grid  mx-auto ">
+							<a class="btn btn-dark" th:href="@{/comentario/homeComentarios}">Voltar</a>
+						</div>
+						
+						<div class="col-6 d-grid  mx-auto ">
+							<input class=" btn btn-success text-uppercase" type="submit"/>
+						</div>
+						</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
